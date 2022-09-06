@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-securechat-staging-102912-authRole",
+      "UnauthRoleArn": "arn:aws:iam::641477947865:role/amplify-securechat-staging-102912-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::641477947865:role/amplify-securechat-staging-102912-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-securechat-staging-102912-deployment",
+      "UnauthRoleName": "amplify-securechat-staging-102912-unauthRole",
+      "StackName": "amplify-securechat-staging-102912",
+      "StackId": "arn:aws:cloudformation:ap-south-1:641477947865:stack/amplify-securechat-staging-102912/40a5bb30-2b73-11ed-b73c-0ac18e289710",
+      "AmplifyAppId": "d3d3etp770vur4"
+    },
+    "categories": {
+      "auth": {
+        "SecureChat": {}
+      }
+    }
+  }
+}
