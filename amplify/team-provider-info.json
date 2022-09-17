@@ -9,11 +9,18 @@
       "UnauthRoleName": "amplify-securechat-staging-102912-unauthRole",
       "StackName": "amplify-securechat-staging-102912",
       "StackId": "arn:aws:cloudformation:ap-south-1:641477947865:stack/amplify-securechat-staging-102912/40a5bb30-2b73-11ed-b73c-0ac18e289710",
-      "AmplifyAppId": "d3d3etp770vur4"
+      "AmplifyAppId": "d3d3etp770vur4",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-securechat-staging-102912-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "SecureChat": {}
+      },
+      "function": {
+        "SecureChatPostConfirmation": {
+          "deploymentBucketName": "amplify-securechat-staging-102912-deployment",
+          "s3Key": "amplify-builds/SecureChatPostConfirmation-65376d4e5241464e3358-build.zip"
+        }
       }
     }
   }
