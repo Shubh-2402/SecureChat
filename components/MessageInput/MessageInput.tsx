@@ -9,15 +9,31 @@ import {
   Platform 
 } from 'react-native';
 import { SimpleLineIcons, Feather, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons'; 
+import { DataStore } from '@aws-amplify/datastore';
+import { ChatRoom, Message } from '../../src/models';
+import { Auth } from 'aws-amplify';
 
-const MessageInput = () => {
+const MessageInput = ({ chatRoom }) => {
   const [message, setMessage] = useState('');
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     // send message
-    console.warn("sending: ", message);
+    const user = await Auth.currentAuthenticatedUser();
+    const newMessage = await DataStore.save(new Message({
+      content: message,
+      userID: user.attributes.sub,
+      chatroomID: chatRoom.id,
+    }))
+
+    updateLastMessage(newMessage);
 
     setMessage('');
+  }
+
+  const updateLastMessage = async (newMessage) => {
+    DataStore.save(ChatRoom.copyOf(chatRoom, updatedChatRoom => {
+      updatedChatRoom.LastMessage = newMessage;
+    }))
   }
 
   const onPlusClicked = () => {
@@ -40,14 +56,14 @@ const MessageInput = () => {
     >
       <View style={styles.inputContainer}>
         <SimpleLineIcons name="emotsmile" size={24} color="#595959" style={styles.icon} />
-
+        
         <TextInput 
           style={styles.input}
           value={message}
           onChangeText={setMessage}
           placeholder="Signal message..."
         />
-
+        
         <Feather name="camera" size={24} color="#595959" style={styles.icon} />
         <MaterialCommunityIcons name="microphone-outline" size={24} color="#595959" style={styles.icon} />
       </View>
