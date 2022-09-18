@@ -60,7 +60,7 @@ export default function ChatRoomScreen() {
     setMessages(fetchedMessages);
   };
 
-  navigation.setOptions({title: 'Elon Musk'})
+  
 
   if (!chatRoom) {
     return <ActivityIndicator />
@@ -70,7 +70,7 @@ export default function ChatRoomScreen() {
     <SafeAreaView style={styles.page}>
       <FlatList
         data={messages}
-        renderItem={({ item}) => <Message message={item} />}
+        renderItem={({ item }) => <Message message={item} />}
         inverted
       />
       <MessageInput chatRoom={chatRoom} />

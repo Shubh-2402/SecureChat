@@ -12,18 +12,20 @@ export default function ChatRoomItem({ chatRoom }) {
   const [lastMessage, setLastMessage] = useState<Message|undefined>();
 
   const navigation = useNavigation();
-  console.log(chatRoom);
+  // console.log(chatRoom);
 
   useEffect(() => {
     const fetchUsers = async () => {
       const fetchedUsers = (await DataStore.query(ChatRoomUser))
-        .filter(chatRoomUser => chatRoomUser.chatroom.id === chatRoom.id)
-        .map(chatRoomUser => chatRoomUser.user);
+      .filter((chatRoomUser) => chatRoomUser.chatroom.id === chatRoom.id)
+      .map((chatRoomUser) => chatRoomUser.user);
 
       // setUsers(fetchedUsers);
 
       const authUser = await Auth.currentAuthenticatedUser();
-      setUser(fetchedUsers.find(user => user.id !== authUser.attributes.sub) || null);
+      setUser(
+        fetchedUsers.find((user) => user.id !== authUser.attributes.sub) || null
+      );
     };
     fetchUsers();
   }, []);
