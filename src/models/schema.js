@@ -180,13 +180,6 @@ export const schema = {
                         "associatedWith": "chatRoom"
                     }
                 },
-                "lastOnlineAt": {
-                    "name": "lastOnlineAt",
-                    "isArray": false,
-                    "type": "AWSTimestamp",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -264,6 +257,13 @@ export const schema = {
                     "name": "status",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "lastOnlineAt": {
+                    "name": "lastOnlineAt",
+                    "isArray": false,
+                    "type": "AWSTimestamp",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -429,5 +429,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "133ac85995abad4cf519ab4bda709672"
+    "version": "ac1af525ed97357d5230388f691ffc3f"
 };
