@@ -25,6 +25,7 @@ import HomeScreen from '../screens/HomeScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ChatRoomHeader from "./ChatRoomHeader";
 import GroupInfoScreen from "../screens/GroupInfoScreen";
+import SettingsScreen from "../screens/Settings";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -66,6 +67,8 @@ function RootNavigator() {
           title: "Users",
         }}
       />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
@@ -75,32 +78,56 @@ function RootNavigator() {
   );
 }
 
-
-
 const HomeHeader = (props) => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
 
   return (
-    <View style={{ 
-      flexDirection: 'row',
-      justifyContent: 'space-between', 
-      width,
-      padding: 10,
-      alignItems: 'center',
-    }}>
-      <Image 
-        source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg'}}
-        style={{ width: 30, height: 30, borderRadius: 30}}
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width,
+        padding: 10,
+        alignItems: "center",
+      }}
+    >
+      <Image
+        source={{
+          uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg",
+        }}
+        style={{ width: 30, height: 30, borderRadius: 30 }}
       />
-      <Text style={{flex: 1, textAlign: 'center', marginLeft: 50, fontWeight: 'bold'}}>SecureChat</Text>
-      <Feather name="camera" size={24} color="black" style={{ marginHorizontal: 10}} />
-      <Pressable onPress={() => navigation.navigate('UsersScreen')}>
-        <Feather name="edit-2" size={24} color="black" style={{ marginHorizontal: 10}} />
+      <Text
+        style={{
+          flex: 1,
+          textAlign: "center",
+          marginLeft: 50,
+          fontWeight: "bold",
+        }}
+      >
+        Signal
+      </Text>
+      <Pressable onPress={() => navigation.navigate("Settings")}>
+        <Feather
+          name="settings"
+          size={24}
+          color="black"
+          style={{ marginHorizontal: 10 }}
+        />
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("UsersScreen")}>
+        <Feather
+          name="edit-2"
+          size={24}
+          color="black"
+          style={{ marginHorizontal: 10 }}
+        />
       </Pressable>
     </View>
-  )
+  );
 };
+
 
 
 
