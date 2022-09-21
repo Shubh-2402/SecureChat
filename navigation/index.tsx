@@ -23,8 +23,8 @@ import LinkingConfiguration from './LinkingConfiguration';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import HomeScreen from '../screens/HomeScreen';
 import UsersScreen from '../screens/UsersScreen';
-
 import ChatRoomHeader from "./ChatRoomHeader";
+import GroupInfoScreen from "../screens/GroupInfoScreen";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -45,10 +45,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen 
-        name="Home" 
-        component={HomeScreen} 
-        options={{ headerTitle: HomeHeader }} 
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerTitle: HomeHeader }}
       />
       <Stack.Screen
         name="ChatRoom"
@@ -58,20 +58,23 @@ function RootNavigator() {
           headerBackTitleVisible: false,
         })}
       />
-      <Stack.Screen 
-        name="UsersScreen" 
-        component={UsersScreen}         
-        options={{ 
+      <Stack.Screen name="GroupInfoScreen" component={GroupInfoScreen} />
+      <Stack.Screen
+        name="UsersScreen"
+        component={UsersScreen}
+        options={{
           title: "Users",
-        }} 
+        }}
       />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
+      <Stack.Screen
+        name="NotFound"
+        component={NotFoundScreen}
+        options={{ title: "Oops!" }}
+      />
     </Stack.Navigator>
   );
 }
+
 
 
 const HomeHeader = (props) => {

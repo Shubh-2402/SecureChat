@@ -6,7 +6,6 @@ import ChatRoomItem from '../components/ChatRoomItem/ChatRoomItem';
 
 
 export default function TabOneScreen() {
-
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
   useEffect(() => {
@@ -14,36 +13,38 @@ export default function TabOneScreen() {
       const userData = await Auth.currentAuthenticatedUser();
 
       const chatRooms = (await DataStore.query(ChatRoomUser))
-        .filter(chatRoomUser => chatRoomUser.user.id === userData.attributes.sub)
-        .map(chatRoomUser => chatRoomUser.chatroom);
+        .filter(
+          (chatRoomUser) => chatRoomUser.user.id === userData.attributes.sub
+        )
+        .map((chatRoomUser) => chatRoomUser.chatroom);
 
       setChatRooms(chatRooms);
     };
     fetchChatRooms();
   }, []);
 
-  const logOut = () => {
+  const logOut = async () => {
+    await DataStore.clear();
     Auth.signOut();
-  }
+  };
 
   return (
     <View style={styles.page}>
-    <FlatList 
-     data={chatRooms}
-     renderItem={({ item }) => <ChatRoomItem chatRoom={item} />}
-     showsVerticalScrollIndicator={false}
-   />
-
-   <Pressable onPress={logOut} style={{backgroundColor: '#3777f0', height: 50, margin: 10, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+      <FlatList
+        data={chatRooms}
+        renderItem={({ item }) => <ChatRoomItem chatRoom={item} />}
+        showsVerticalScrollIndicator={false}
+      />
+      <Pressable onPress={logOut} style={{backgroundColor: '#3777f0', height: 50, margin: 10, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{fontWeight: 'bold', color:'white'}}>Logout</Text>
       </Pressable>
- </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: 'white',
-    flex:1,
-  }
+    backgroundColor: "white",
+    flex: 1,
+  },
 });
